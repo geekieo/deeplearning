@@ -76,4 +76,5 @@ class Perceptron(object):
         # 更新 bias
         self.bias += rate * error
 
+
         
