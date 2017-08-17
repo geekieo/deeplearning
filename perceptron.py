@@ -44,7 +44,7 @@ class Perceptron(object):
         # 把输入和输出打包在一起，生成样本列表 [(input_vec, label),...]
         # 即把一个样本的特征和其标签打包，每个训练样本是 (input_vec, label)
         samples =  list(zip(input_vecs, labels))
-        for i in range(iteration):
+        for _ in range(iteration):
             self._one_iteration(samples, rate)
 
     def _one_iteration(self, samples, rate):
