@@ -1,10 +1,10 @@
 Name：Deep Learning in Action
-Description：仅使用 python3 自带的库，实现包括MLP，BPNN，CNN，RNN，LSTM在内的经典神经网络，由浅入深，实践深度学习算法
-Code reference: https://www.zybuluo.com/hanbingtao/note/433855 by @hanbingtao with python2
-Creator: @geekieo (geekieo@hotmail.com)
+Description：仅使用 python3 自带的库，实现包括Preceptron，BPNN，CNN，RNN，LSTM在内的经典神经网络，由浅入深，实践深度学习算法
+Author: @geekieo (geekieo@hotmail.com)
+Reference: https://www.zybuluo.com/hanbingtao/note/433855 by @hanbingtao
 
 代码目录
-1 多层感知机/ 多层前馈神经网络/ Multi-layer Perceptron(MLP)
+1 感知机/ 前馈神经网络/ Perceptron   ..............................perceptron.py
 2 线性单元和梯度下降/ 线性回归(Linear Regission)
 3 神经网络和反向传播算法/ BP神经网络(BPNN)
 4 卷积神经网络/ Convolutional Neural Network(CNN)
