@@ -19,7 +19,7 @@ class Perceptron(object):
         打印学习到的权重，偏置项
         print(instance) 将调用本方法打印返回值
         '''
-        return 'weights\t: %s\nbias\t: %f\n' %(self.weights, self.bias)
+        return 'weights\t: %s\nbias\t: %s\n' %(self.weights, self.bias)
 
     def predict(self, input_vec):
         '''
@@ -63,7 +63,7 @@ class Perceptron(object):
     def _update_weights(self, input_vec, output, label, rate):
         '''
         权重更新公式为误差驱动 error-driven，
-        和逻辑回归权重更新公式一模一样
+        就是梯度下降，和线性回归，逻辑回归权重更新公式一样
         '''
         # 把 input_vec[x1,x2,x3,...] 和 weights[w1,w2,w3,...] 打包在一起
         # 变成[(x1,w1),(x2,w2),(x3,w3),...]
