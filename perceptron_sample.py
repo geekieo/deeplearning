@@ -1,5 +1,5 @@
-from perceptron import *
-import activator as act
+from perceptron import Perceptron
+from activator import step
 
 
 def get_training_dataset():
@@ -17,7 +17,7 @@ def train_and_perceptron():
     '''
     使用and真值表数据训练感知器
     '''
-    perceptron = Perceptron(2, act.step)
+    perceptron = Perceptron(2, step)
     # 训练，迭代10轮，学习速率为 0.1
     input_vecs, labels = get_training_dataset()
     perceptron.train(input_vecs, labels, 10, 0.1)

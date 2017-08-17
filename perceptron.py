@@ -41,17 +41,18 @@ class Perceptron(object):
         '''
         输入训练数据：一组特征向量，与每个向量对应的 label；训练轮数；学习率
         '''
+        # 把输入和输出打包在一起，生成样本列表 [(input_vec, label),...]
+        # 即把一个样本的特征和其标签打包，每个训练样本是 (input_vec, label)
+        samples =  list(zip(input_vecs, labels))
         for i in range(iteration):
-            self._one_iteration(input_vecs,labels, rate)
+            self._one_iteration(samples, rate)
 
-    def _one_iteration(self, input_vecs, labels, rate):
+    def _one_iteration(self, samples, rate):
         '''
         一次迭代，把所有训练样本过一遍，
         每个训练样本将更新一遍权重系数
         '''
-        # 把输入和输出打包在一起，生成样本列表 [(input_vec, label),...]
-        # 即把一个样本的特征和其标签打包，每个训练样本是 (input_vec, label)
-        samples =  list(zip(input_vecs, labels)) # TO DO 这一步可提到外循环
+
         # 对每个样本，按照感知器规则更新权重
         for (input_vec, label) in samples:
             # 计算感知器在当前权重下的输出
