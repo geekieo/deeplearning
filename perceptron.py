@@ -1,3 +1,5 @@
+from functools import reduce
+
 class Perceptron(object):
     # 注释中“打包在一起”的意思是，使打包对象成为同一次运算的处理对象
 
@@ -30,7 +32,6 @@ class Perceptron(object):
         # 利用 zip 生成 [(x1,w1),(x2,w2),(x3,w3),...]
         # 然后利用 map 函数计算[x1*w1,x2*w2,x3*w3]
         # 最后利用 reduce 求和
-        from functools import reduce
         return self.activator(
             reduce(lambda a, b: a+b,
                 list(map(lambda x_w: x_w[0]*x_w[1],
