@@ -1,12 +1,13 @@
 Name：Deep Learning in Action
-Description：仅使用 python3 自带的库，实现包括Preceptron，BPNN，CNN，RNN，LSTM在内的经典神经网络，由浅入深，实践深度学习算法
+Description：使用 python3 自带库实现 Preceptron，Linear Regression，BPNN。
+    结合 numpy 库实现 CNN，RNN，LSTM 等经典神经网络，由浅入深，实践深度神经网络
 Author: @geekieo (geekieo@hotmail.com)
 Reference: https://www.zybuluo.com/hanbingtao/note/433855 by @hanbingtao
 
 代码目录
-1 感知机/ 前馈神经网络/ Perceptron   ..............................perceptron.py
-2 线性单元和梯度下降/ 线性回归(Linear Regission)
-3 神经网络和反向传播算法/ BP神经网络(BPNN)
+1 感知机/ 前馈神经网络/ Perceptron   ...............................  perceptron.py
+2 线性回归/ 线性单元/ Linear Regission  .....................  linear_regression.py
+3 神经网络和反向传播算法/ Back Propagation Neural Network  ..  
 4 卷积神经网络/ Convolutional Neural Network(CNN)
 5 循环神经网络/ Recurrent Neural Network(RNN)
 6 长短时记忆网络/ Long Short Term Memory(LSTM)
