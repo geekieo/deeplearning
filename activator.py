@@ -1,3 +1,6 @@
+'''
+激活函数
+'''
 def sigmoid(x):
     '''
     sigmoid 激活函数
