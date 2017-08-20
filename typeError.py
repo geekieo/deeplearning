@@ -4,7 +4,7 @@ class TypeError(Exception):
     def __str__(self):
         return repr(self.value)
 
-def test():
+if __name__ == '__main__':
     # 1
     try:
         raise TypeError(2*2)
