@@ -13,8 +13,7 @@ class Normalization():
         '''
         # inX 为待处理数组
         self.inX = inX
-        self.length = len(inX)
-        self.correctFormat = self._check()  # 校验 inX 格式
+        self.length = self._check()  # 校验 inX 格式，正确则返回其长度
         self.mean = self._mean()
         self.variance = self._variance()
         self.stdDeviation = self._stdDeviation()
@@ -22,8 +21,13 @@ class Normalization():
 
     def _check(self):
         '''格式校验'''
-        if type(self.inX).__name__ != 'list' or self.length == 0:
-            raise TypeError("Please check the value, make sure it is a list!")
+        if type(self.inX).__name__ != 'list':
+            raise TypeError("Please check the argument, make sure the type is list!")
+        length = len(self.inX) 
+        if length == 0:
+            raise TypeError("Please check the argument, it can't be empty!")
+        return length
+
 
     def _endValue(self):
         '''
@@ -82,9 +86,9 @@ class Normalization():
         return list(map(lambda x:(x-self.mean)/self.stdDeviation, self.inX))
 
 
-
-def test():
+if __name__ == '__main__':
     x = [2, 4, 6, 7, 8]
+    z=[]
     n = Normalization(x)
     minmaxnorm = n.minMaxNorm()
     zscorenorm = n.zScoreNorm()
