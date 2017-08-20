@@ -19,11 +19,12 @@ class Normalization():
         self.stdDeviation = self._stdDeviation()
         self.maxValue, self.minValue = self._endValue()
 
-    def _check(self):
+    def _check(self, inY = None):
         '''格式校验'''
-        if type(self.inX).__name__ != 'list':
+        inList = self.inX if inY == None else inY
+        if type(inList).__name__ != 'list':
             raise TypeError("Please check the argument, make sure the type is list!")
-        length = len(self.inX) 
+        length = len(inList) 
         if length == 0:
             raise TypeError("Please check the argument, it can't be empty!")
         return length
@@ -63,36 +64,42 @@ class Normalization():
         '''
         return sqrt(self.variance)
 
-    def minMaxNorm(self):
+    def minMaxNorm(self, inY = None):
         '''
         最大最小值归一化
-        把一组数值线性映射到 [0,1] 区间
-        计算公式：x_norm = (x - inX_min) / (inX_max - inX_min)
+        把一组数值线性映射到测试样本的所映射的 [0,1] 区间
+        参数：if inY == None 返回样本归一化数据 else 返回 inY 在 inX 归一化参数下的归一化数据
         返回：归一化的数组
+        计算公式：x_norm = (x - inX_min) / (inX_max - inX_min)
         适用环境：不需要考虑特征分量之间的量纲差异，适用于大部分情况
         '''
         delta = self.maxValue - self.minValue
-        return list(map(lambda x: (x - self.minValue) / delta, self.inX))
+        return list(map(lambda x: (x - self.minValue) / delta,
+            self.inX if inY == None else inY))
     
     
-    def zScoreNorm(self):
+    def zScoreNorm(self, inY = None):
         '''
         0均值标准差归一化
         把一组数组映射到均值为0的标准差归一化区间
-        计算公式：x_norm = (x - inX_mean) / stdDeviation
+        参数：if inY == None 返回样本归一化数据 else 返回 inY 在 inX 归一化参数下的归一化数据
         返回：归一化数组
+        计算公式：x_norm = (x - inX_mean) / stdDeviation
         适用环境：需要消除特征分量之间量纲差异
         '''
-        return list(map(lambda x:(x-self.mean)/self.stdDeviation, self.inX))
+        return list(map(lambda x:(x-self.mean)/self.stdDeviation,
+            self.inX if inY == None else inY))
 
 
 if __name__ == '__main__':
-    x = [2, 4, 6, 7, 8]
-    z=[]
-    n = Normalization(x)
-    minmaxnorm = n.minMaxNorm()
-    zscorenorm = n.zScoreNorm()
-    print(x)
-    print(n.mean, n.stdDeviation)
-    print(minmaxnorm)
-    print(zscorenorm)
+    inX = [2, 4, 6, 7, 8]
+    inY = [56,48,59]
+    n = Normalization(inX)
+
+    print(inX)
+    print(inY)
+    print(n.mean, n.stdDeviation,sep='; ')
+    print(n.minMaxNorm())
+    print(n.minMaxNorm(inY))
+    print(n.zScoreNorm())
+    print(n.zScoreNorm(inY))
