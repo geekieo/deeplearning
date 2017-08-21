@@ -21,11 +21,11 @@ class Normalization():
 
     def _check(self, inY=None):
         '''格式校验'''
-        inList = self.inX if inY == None else inY
-        if type(inList).__name__ != 'list':
+        vec = self.inX if inY == None else inY
+        if type(vec).__name__ != 'list':
             raise TypeError(
                 "Please check the argument, make sure the type is list!")
-        length = len(inList)
+        length = len(vec)
         if length == 0:
             raise TypeError("Please check the argument, it can't be empty!")
         return length
