@@ -53,7 +53,6 @@ class Perceptron(object):
         一次迭代，把所有训练样本过一遍，
         每个训练样本将更新一遍权重系数
         '''
-
         # 对每个样本，按照感知器规则更新权重
         for (input_vec, label) in samples:
             # 计算感知器在当前权重下的输出
@@ -69,6 +68,7 @@ class Perceptron(object):
         # 把 input_vec[x1,x2,x3,...] 和 weights[w1,w2,w3,...] 打包在一起
         # 变成[(x1,w1),(x2,w2),(x3,w3),...]
         # 权重更新规则：wi = wi + rate * error * xi ; bias 同理
+        # 更新步长也和 xi 有关，若归一化可以统一这部分变量，便于rate调参
         error = label - output
         self.weights = list(map(
             lambda w_x: w_x[0] + rate * error * w_x[1],
