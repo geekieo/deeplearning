@@ -26,7 +26,9 @@ def get_train_dataset():
 
 
 if __name__ == '__main__':
-    '''训练并使用线性回归模型'''
+    '''
+    训练并使用线性回归模型
+    '''
     # 创建感知器，输入参数的特征数为1
     lr = LinearRegssion(1)
     train_vecs, labels = get_train_dataset()
