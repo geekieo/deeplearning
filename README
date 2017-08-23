@@ -5,9 +5,9 @@ Author: @geekieo (geekieo@hotmail.com)
 Reference: https://www.zybuluo.com/hanbingtao/note/433855 by @hanbingtao
 
 代码目录
-1 感知机/ 前馈神经网络/ Perceptron   ...............................  perceptron.py
-2 线性回归/ 线性单元/ Linear Regission  .....................  linear_regression.py
-3 神经网络和反向传播算法/ Back Propagation Neural Network  ..  
+1 感知机/ 单层前馈神经网络/ Perceptron   .................................  perceptron
+2 线性回归/ 线性单元/ Linear Regission  ..........................  linear_regression
+3 神经网络和反向传播算法/ Neural Network with Back Propagation ...  
 4 卷积神经网络/ Convolutional Neural Network(CNN)
 5 循环神经网络/ Recurrent Neural Network(RNN)
 6 长短时记忆网络/ Long Short Term Memory(LSTM)

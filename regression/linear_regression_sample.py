@@ -1,4 +1,4 @@
-from linear_regression import LinearRegssion
+from . import linear_regression
 from normalization_2D import Normalization2D
 
 def get_train_dataset():

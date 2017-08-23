@@ -1,4 +1,4 @@
-from perceptron import Perceptron
+from perceptron.perceptron import Perceptron
 from activator import linear
 
 class LinearRegssion(Perceptron):
