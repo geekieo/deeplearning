@@ -41,7 +41,7 @@ class Normalization2D(Normalization):
         测试样本 Y2D 的列数必须和训练样本列数一致
         适用于特征分量之间起伏不大的数据集，或分量之间非互独的数据集，如图象
         '''
-        super().__init__(self._2Dto1D(trainSet)) #将二维训练集拉成一维，并送入父类初始化
+        super().__init__(self._2Dto1D(self.trainSet)) #将二维训练集拉成一维，并送入父类初始化
         if Y2D == None:
             if method == "minMaxNorm":
                 out1DN = super().minMaxNorm()
