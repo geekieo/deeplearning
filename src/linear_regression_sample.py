@@ -1,4 +1,4 @@
-from . import linear_regression
+from linear_regression import LinearRegssion
 from normalization_2D import Normalization2D
 
 def get_train_dataset():
@@ -24,8 +24,7 @@ def get_train_dataset():
 
     return input_vecs, labels
 
-
-if __name__ == '__main__':
+def test():
     '''
     训练并使用线性回归模型
     '''
@@ -47,3 +46,6 @@ if __name__ == '__main__':
     test_vecs = [[95]]
     test_vecs = norm2D.norm2DInGlobal(test_vecs)
     print('area = 95, price = %.2f ' % lr.predict(test_vecs[0]))
+
+if __name__ == '__main__':
+    test()

@@ -1,5 +1,5 @@
 from perceptron import Perceptron
-from deeplearning.activator import step
+from activator import step
 
 
 def get_training_dataset():

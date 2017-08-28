@@ -1,9 +1,9 @@
 from setuptools import setup, find_packages
 setup(  
-    name = "deeplearning",
-    version = "0.1",
+    name = "deeplearning", #包名
+    version = "0.1", 
     packages = find_packages(),
-
+    py_modules = ['src'], #需要打包的文件夹列表
     author = "geekieo",
     author_email = "geekieo@hotmail.com",
     )
