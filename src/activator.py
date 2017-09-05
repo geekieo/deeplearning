@@ -21,3 +21,10 @@ def linear(x):
     啥也没干
     '''
     return x
+
+def tanh(x):
+    '''
+    双曲正切激活函数
+    '''
+    from math import tanh
+    return tanh(x)
