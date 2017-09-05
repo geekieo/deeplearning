@@ -1,3 +1,7 @@
+'''
+手动抛出异常
+'''
+
 class TypeError(Exception):
     def __init__(self, value):
         self.value = value
