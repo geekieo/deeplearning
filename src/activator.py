@@ -4,6 +4,8 @@
 def sigmoid(x):
     '''
     sigmoid 激活函数
+    设 y = sigmoid(x)
+    则 dy/dx = y(1-y)
     '''
     from math import exp
     return 1 / (1 + exp(-x))
@@ -25,6 +27,8 @@ def linear(x):
 def tanh(x):
     '''
     双曲正切激活函数
+    设 y = tanh(x)
+    则 dy/dx = (1+y)(1-y) = 1-y^2
     '''
     from math import tanh
     return tanh(x)
