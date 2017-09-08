@@ -3,7 +3,7 @@ Description：使用 python3 自带库实现 Preceptron，Linear Regression，BP
     结合 numpy 库实现 CNN，RNN，LSTM 等经典神经网络，由浅入深，实践深度神经网络
 Author: @geekieo (geekieo@hotmail.com)
 Reference: 
-    [1]https://www.zybuluo.com/hanbingtao/note/433855, author: hanbingtao
+    [1]https://www.zybuluo.com/hanbingtao/note/433855, author: @hanbingtao
     [2]https://tigerneil.gitbooks.io/neural-networks-and-deep-learning-zh/content/,
     author:Michael Nielsen, translator: xhzhu.nju@gmail.com
 

@@ -1,5 +1,5 @@
 from linear_regression import LinearRegssion
-from normalization_2D import Normalization2D
+from normalization import Normalization2D
 
 def get_train_dataset():
     '''
