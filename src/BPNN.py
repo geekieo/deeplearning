@@ -23,12 +23,14 @@ Connections 仅仅作为Connection的集合对象，提供一些集合操作。
 from activator import sigmoid
 from functools import reduce
 
+
 class Node(object):
     '''
     节点类，负责记录和维护节点自身信息，
     以及与这个节点相关的前后层连接，
     实现输出值 output 和误差项 error 的计算。
     '''
+
     def __init__(self, layer_index, node_index):
         '''
         构造节点对象
@@ -39,7 +41,7 @@ class Node(object):
         self.node_index = node_index
         #前层节点
         self.f_stream = []
-        #后层节点   
+        #后层节点
         self.b_stream = []
         self.output = 0
         self.error = 0
@@ -71,15 +73,16 @@ class Node(object):
             W·X 为输入值的加权和，sigmoid() 为激活函数
         '''
         # ret 为 reduce 时的加权项缓存
-        output = reduce(lambda ret, conn: ret+ conn.f_stream_node.output * conn.weight,
-        self.f_stream)
+        output = reduce(
+            lambda ret, conn: ret + conn.f_stream_node.output * conn.weight,
+            self.f_stream)
 
-    def calc_output_layer_error(self,label):
+    def calc_output_layer_error(self, label):
         '''
         计算输出层节点误差梯度
         输出层BP公式：error = output * (1-output)*(label - output)
         '''
-        self.error = self.output*(1-self.output)*(label-self.output)
+        self.error = self.output * (1 - self.output) * (label - self.output)
 
     def calc_hidden_layer_error(self):
         '''
@@ -90,6 +93,19 @@ class Node(object):
             当前节点的误差为前馈层的节点误差加权和，不同节点的前馈节点误差相同，但不同节点的前馈权重不同。
         '''
         # ret 为 reduce 时的加权项缓存
-        b_stream_error = reduce(lambda ret, conn: ret + conn.b_stream_node.error*conn.weight,
-        self.b_stream, 0.0)
+        b_stream_error = reduce(
+            lambda ret, conn: ret + conn.b_stream_node.error * conn.weight,
+            self.b_stream, 0.0)
 
+    def __str__(self):
+        '''
+        重载对象打印调用的方法，打印节点的信息
+        '''
+        node_str = 'L%u-N%u: output: %f error: %f' % (self.layer_index,
+                                                      self.node_index,
+                                                      self.output, self.error)
+        b_stream_str = reduce(lambda ret, conn: ret + '\n\t' + str(conn),
+                              self.b_stream, '')
+        f_stream_str = reduce(lambda ret, conn: ret + '\n\t' + str(conn),
+                              self.f_stream, '')
+        return node_str + '\n\tb_stream:' + b_stream_str + '\n\tf_stream:' + f_stream_str
