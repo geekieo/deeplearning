@@ -39,8 +39,8 @@ class Node(object):
         '''
         self.layer_index = layer_index
         self.node_index = node_index
-        self.f_stream = [] #前层节点
-        self.b_stream = [] #后层节点
+        self.f_stream = []  #前层节点
+        self.b_stream = []  #后层节点
         self.output = 0
         self.error = 0
 
@@ -77,15 +77,18 @@ class Node(object):
 
     def calc_output_layer_error(self, label):
         '''
-        计算输出层节点误差梯度
-        输出层BP公式：error = output * (1-output)*(label - output)
+        计算输出层节点误差
+        输出层BP公式：error = ∂Eⱼ/∂wᵢⱼ = ∂E/∂zⱼ * ∂zⱼ/∂wᵢⱼ
+                     = output * (1-output)*(label - output)
         '''
         self.error = self.output * (1 - self.output) * (label - self.output)
 
     def calc_hidden_layer_error(self):
         '''
-        计算隐层节点误差梯度
-        隐层BP公式：error = output*(1-output)*Σ(w·out_error)
+        计算隐层节点误差
+        隐层BP公式：
+            error = dE/dyⱼ = Σ ∂E/∂zⱼ * ∂z/∂yⱼ = Σ ∂E/∂zⱼ * wᵢⱼ
+            = output*(1-output)*Σ(w·out_error)
             error 为当前节点方向传播误差值；output 为当前节点前馈输出值；
             W 为当前节点前馈权重，有多个权重；out_error 为当前节点前馈节点误差，对应权重，有多个误差；
             当前节点的误差为前馈层的节点误差加权和，不同节点的前馈节点误差相同，但不同节点的前馈权重不同。
@@ -94,7 +97,7 @@ class Node(object):
         b_stream_error = reduce(
             lambda ret, conn: ret + conn.b_stream_node.error * conn.weight,
             self.b_stream, 0.0)
-        self.error = self.output *(1-self.output)*b_stream_error
+        self.error = self.output * (1 - self.output) * b_stream_error
 
     def __str__(self):
         '''
@@ -112,10 +115,9 @@ class Node(object):
 
 class ConstNode(object):
     '''
-    常数项节点
-    实现一个输出恒为1的节点，计算偏执项 wb 时需要
-    1 的地位等同于其他节点输入的特征变量 x  
-    公式 bias_output = 1*wb
+    常数项节点类(可改写为Node的子类)
+    实现一个输出恒为1的节点，计算偏执项 wb 时需要 
+    bias = 1*wb
     '''
 
     def __init__(self, layer_index, node_index):
@@ -126,7 +128,7 @@ class ConstNode(object):
         '''
         self.layer_index = layer_index
         self.node_index = node_index
-        self.b_stream = [] #后层节点
+        self.b_stream = []  #后层节点
         self.output = 1
         self.error = 0
 
@@ -138,18 +140,27 @@ class ConstNode(object):
 
     def calc_hidden_layer_error(self):
         '''
-        计算隐层节点误差梯
-        隐层BP公式：error = output*(1-output)*Σ(w·out_error)
+        计算节点误差
+        隐层BP公式：
+            error = dE/dyⱼ = Σ ∂E/∂zⱼ * ∂z/∂yⱼ = Σ ∂E/∂zⱼ * wᵢⱼ
+            = output*(1-output)*Σ(w·out_error)
         '''
         b_stream_error = reduce(
             lambda ret, conn: ret + conn.b_stream_node.error * conn.weight,
             self.b_stream, 0.0)
         self.error = self.output * (1 - self.output) * b_stream_error
-   
+
     def __str__(self):
         '''
         打印节点的信息
         '''
-        node_str = '%u-%u: output: 1' % (self.layer_index, self.node_index)
-        b_stream_str = reduce(lambda ret, conn: ret + '\n\t' + str(conn), self.b_stream, '')
+        node_str = 'L%u-N%u: output: 1 ' % (self.layer_index, self.node_index)
+        b_stream_str = reduce(lambda ret, conn: ret + '\n\t' + str(conn),
+                              self.b_stream, '')
         return node_str + '\n\tb_stream:' + b_stream_str
+
+
+if __name__ == "__main__":
+    n = Node(1, 2)
+    cn = ConstNode(1, 3)
+    print(n, cn, sep='\n')
