@@ -62,14 +62,14 @@ class Perceptron(object):
 
     def _update_weights(self, input_vec, output, label, rate):
         '''
-        权重更新公式为误差驱动 error-driven，
+        权重更新公式为误差驱动 error-driven，梯度上升
         就是梯度下降，和线性回归，逻辑回归权重更新公式一样
         '''
         # 把 input_vec[x1,x2,x3,...] 和 weights[w1,w2,w3,...] 打包在一起
         # 变成[(x1,w1),(x2,w2),(x3,w3),...]
         # 权重更新规则：wi = wi + rate * error * xi ; bias 同理
         # 更新步长也和 xi 有关，若归一化可以统一这部分变量，便于rate调参
-        error = label - output
+        error = label - output # 如果 error = output - label，那么wi = wi = rate * error * xi，这就是梯度下降
         self.weights = list(map(
             lambda w_x: w_x[0] + rate * error * w_x[1],
             list(zip(self.weights, input_vec))
