@@ -20,7 +20,7 @@ Connections 仅仅作为Connection的集合对象，提供一些集合操作。
     前馈，从当前层到后一层
     反向，从当前层到前一层
 """
-from activator import sigmoid
+from activations import sigmoid
 from functools import reduce
 
 

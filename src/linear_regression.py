@@ -1,5 +1,5 @@
 from perceptron import Perceptron
-from activator import linear
+from activations import linear
 
 class LinearRegssion(Perceptron):
     def __init__(self, input_num):
